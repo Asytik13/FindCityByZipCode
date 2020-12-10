@@ -18,7 +18,7 @@ public class CsvReader {
 
             //Read one line at a time
             while (( nextLine = reader.readNext() ) != null) {
-                mapper.addData(nextLine);
+                mapper.initializeCodeCityMap(nextLine);
             }
         } catch (Exception e) {
             e.printStackTrace();

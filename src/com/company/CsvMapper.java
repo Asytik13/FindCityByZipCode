@@ -5,14 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CsvMapper {
+public class CsvMapper implements MapContract{
 
     Map<String, List<String>> citiesData = new HashMap<>();
 
-    public Map<String, List<String>> addData(String[] csvRow){
+    public Map<String, List<String>> initializeCodeCityMap(String[] csvRow){
+;
+        int zipCodeIndex = 0;
+        int currentCityIndex = 2;
 
-        String zipCode = csvRow[0];
-        String currentCityName = csvRow[2];
+        String zipCode = csvRow[zipCodeIndex];
+        String currentCityName = csvRow[currentCityIndex];
 
         List<String> cityNames = new ArrayList<>();
 
@@ -24,7 +27,7 @@ public class CsvMapper {
         return citiesData;
     }
 
-    private void updateListOfCities(String zipCode, String currentCityName){
+     public void updateListOfCities(String zipCode, String currentCityName){
         getCitiesFromMap(citiesData, zipCode).add(currentCityName);
     }
 
@@ -36,7 +39,7 @@ public class CsvMapper {
                 .orElse(new ArrayList<>());
     }
 
-    private void addNewZipCityPair(List<String> cityNames, String zipCode, String currentCityName){
+    public void addNewZipCityPair(List<String> cityNames, String zipCode, String currentCityName){
         cityNames.add(currentCityName);
         citiesData.put(zipCode, cityNames);
     }
